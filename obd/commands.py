@@ -279,6 +279,12 @@ __mode7__ = [
     OBDCommand("GET_CURRENT_DTC", "Get DTCs from the current/last driving cycle", b"07", 0, dtc, ECU.ALL, False),
 ]
 
+__mode9__ = [
+    OBDCommand("VID_A",             "Vehicle information",                      b"0900", 6, pid,        ECU.ALL,    False),
+    OBDCommand("VIN_MESSAGE_COUNT", "VIN Message Count in PID 02",              b"0901", 3, noop,       ECU.ALL,    False),
+    OBDCommand("VIN",               "Gets VIN for the vehicle, if supported",   b"0902", 19,vin_reader, ECU.ALL, False),
+]
+
 __misc__ = [
     OBDCommand("ELM_VERSION", "ELM327 version string", b"ATI", 0, raw_string, ECU.UNKNOWN, False),
     OBDCommand("ELM_VOLTAGE", "Voltage detected by OBD-II adapter", b"ATRV", 0, elm_voltage, ECU.UNKNOWN, False),
@@ -303,6 +309,7 @@ class Commands():
             __mode6__,
             __mode7__,
             [],
+            __mode9__,
         ]
 
         # allow commands to be accessed by name
@@ -356,6 +363,7 @@ class Commands():
             self.GET_CURRENT_DTC,
             self.ELM_VERSION,
             self.ELM_VOLTAGE,
+            self.VID_A,
         ]
 
     def pid_getters(self):

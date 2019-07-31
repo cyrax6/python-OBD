@@ -50,6 +50,11 @@ def test_rpm(skip_if_port_unspecified, obd):
     assert (good_rpm_response(r))
 
 
+def test_vin_response(skip_if_port_unspecified, obd):
+    response = obd.query(commands.VIN)
+    print('Response :{}'.format(response))
+    assert(False)
+
 # Async tests
 
 def test_async_query(skip_if_port_unspecified, asynchronous):
@@ -144,3 +149,4 @@ def test_async_unwatch_callback(skip_if_port_unspecified, asynchronous):
 
     assert (all([good_rpm_response(r) for r in a_rs + b_rs]))
     assert (len(a_rs) > len(b_rs))
+

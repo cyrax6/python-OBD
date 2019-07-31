@@ -484,3 +484,7 @@ def monitor(messages):
             mon.add_test(test)
 
     return mon
+
+def vin_reader(messages):
+    d = messages[0].data[2]
+    return d
